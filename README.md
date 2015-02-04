@@ -1,0 +1,5 @@
+# Audio Plugin Template
+
+This is a template for creating audio plugins using the Juce framework. It includes the necessary variables and methods that are not included in the default audio plugin template for Juce as well as the code needed for designing your own GUI elements through the `PluginLookAndFeel` class. `PluginEditor.h` and `PluginEditor.cpp` are written for use with the IntroJucer's GUI editor; which can be copy and pasted into a new GUI component file set if it's not dected by the IntroJucer (I haven't tested that). This also includes is the `Timer` class inheritance needed for getting the GUI elements to respond to automation, or parameter changes, from the host.
+
+This is more for my personal projects with Juce audio plugins, but hopefully this can help others better understand the JUCE API and as a starting point for setting up their projects. If you choose to use this template, remember to change the class names accordingly in all files to match with your plugin name as specified in the IntroJucer; or don't if it doesn't matter to you. Don't forget to update the Base SDK before building!
