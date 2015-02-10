@@ -17,8 +17,8 @@
   ==============================================================================
 */
 
-#ifndef __JUCE_HEADER_973A85C7431B44EB__
-#define __JUCE_HEADER_973A85C7431B44EB__
+#ifndef __JUCE_HEADER_419FC5D7D3F5212A__
+#define __JUCE_HEADER_419FC5D7D3F5212A__
 
 //[Headers]     -- You can add your own extra header files here --
 #include "JuceHeader.h"
@@ -36,13 +36,13 @@
     Describe your class and how it works here!
                                                                     //[/Comments]
 */
-class JuceAudioPluginTemplateAudioProcessorEditor  : public AudioProcessorEditor,
-                                                     public Timer
+class PluginAudioProcessorEditor  : public AudioProcessorEditor,
+                                    public Timer
 {
 public:
     //==============================================================================
-    JuceAudioPluginTemplateAudioProcessorEditor (JuceAudioPluginTemplateAudioProcessor& p);
-    ~JuceAudioPluginTemplateAudioProcessorEditor();
+    PluginAudioProcessorEditor (PluginAudioProcessor& p);
+    ~PluginAudioProcessorEditor();
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
@@ -59,11 +59,11 @@ private:
 
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    JuceAudioPluginTemplateAudioProcessor& processor;
+    PluginAudioProcessor& processor;
 
-    JuceAudioPluginTemplateAudioProcessor& getProcessor() const
+    PluginAudioProcessor& getProcessor() const
     {
-        return static_cast<JuceAudioPluginTemplateAudioProcessor&> (processor);
+        return static_cast<PluginAudioProcessor&> (processor);
     }
 
     PluginLookAndFeel pluginLookAndFeel;
@@ -74,10 +74,10 @@ private:
 
 
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (JuceAudioPluginTemplateAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginAudioProcessorEditor)
 };
 
 //[EndFile] You can add extra defines here...
 //[/EndFile]
 
-#endif   // __JUCE_HEADER_973A85C7431B44EB__
+#endif   // __JUCE_HEADER_419FC5D7D3F5212A__

@@ -13,70 +13,81 @@
 
 
 //==============================================================================
-JuceAudioPluginTemplateAudioProcessor::JuceAudioPluginTemplateAudioProcessor()
+PluginAudioProcessor::PluginAudioProcessor()
 {
 }
 
-JuceAudioPluginTemplateAudioProcessor::~JuceAudioPluginTemplateAudioProcessor()
+PluginAudioProcessor::~PluginAudioProcessor()
 {
 }
 
 //==============================================================================
-const String JuceAudioPluginTemplateAudioProcessor::getName() const
+const String PluginAudioProcessor::getName() const
 {
     return JucePlugin_Name;
 }
 
-int JuceAudioPluginTemplateAudioProcessor::getNumParameters()
+int PluginAudioProcessor::getNumParameters()
 {
     return 0;
 }
 
-float JuceAudioPluginTemplateAudioProcessor::getParameter (int index)
+float PluginAudioProcessor::getParameter (int index)
 {
-    return 0.0f;
+    switch (index) {
+        default:    return 0.0f;
+    }
 }
 
-void JuceAudioPluginTemplateAudioProcessor::setParameter (int index, float newValue)
+void PluginAudioProcessor::setParameter (int index, float newValue)
 {
+    switch (index) {
+        default:    break;
+    }
 }
 
-float JuceAudioPluginTemplateAudioProcessor::getParameterDefaultValue (int index)
+float PluginAudioProcessor::getParameterDefaultValue (int index)
 {
-    return 0.0f;
+    switch (index) {
+        default:    return 0.0f;
+    }
 }
 
-const String JuceAudioPluginTemplateAudioProcessor::getParameterName (int index)
+const String PluginAudioProcessor::getParameterName (int index)
 {
-    return String();
+    switch (index) {
+        default:    return String::empty;
+    }
 }
 
-const String JuceAudioPluginTemplateAudioProcessor::getParameterText (int index)
+const String PluginAudioProcessor::getParameterText (int index)
 {
-    return String();
+    switch (index) {
+        default:    return String(getParameter(index), 2);
+    }
 }
 
-const String JuceAudioPluginTemplateAudioProcessor::getInputChannelName (int channelIndex) const
+const String PluginAudioProcessor::getInputChannelName (int channelIndex) const
 {
     return String (channelIndex + 1);
 }
 
-const String JuceAudioPluginTemplateAudioProcessor::getOutputChannelName (int channelIndex) const
+const String PluginAudioProcessor::getOutputChannelName (int channelIndex) const
 {
     return String (channelIndex + 1);
 }
 
-bool JuceAudioPluginTemplateAudioProcessor::isInputChannelStereoPair (int index) const
+bool PluginAudioProcessor::isInputChannelStereoPair (int index) const
 {
     return true;
 }
 
-bool JuceAudioPluginTemplateAudioProcessor::isOutputChannelStereoPair (int index) const
+bool PluginAudioProcessor::isOutputChannelStereoPair (int index) const
 {
     return true;
 }
 
-bool JuceAudioPluginTemplateAudioProcessor::acceptsMidi() const
+bool PluginAudioProcessor::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput
     return true;
@@ -85,7 +96,7 @@ bool JuceAudioPluginTemplateAudioProcessor::acceptsMidi() const
    #endif
 }
 
-bool JuceAudioPluginTemplateAudioProcessor::producesMidi() const
+bool PluginAudioProcessor::producesMidi() const
 {
    #if JucePlugin_ProducesMidiOutput
     return true;
@@ -94,54 +105,54 @@ bool JuceAudioPluginTemplateAudioProcessor::producesMidi() const
    #endif
 }
 
-bool JuceAudioPluginTemplateAudioProcessor::silenceInProducesSilenceOut() const
+bool PluginAudioProcessor::silenceInProducesSilenceOut() const
 {
     return false;
 }
 
-double JuceAudioPluginTemplateAudioProcessor::getTailLengthSeconds() const
+double PluginAudioProcessor::getTailLengthSeconds() const
 {
     return 0.0;
 }
 
-int JuceAudioPluginTemplateAudioProcessor::getNumPrograms()
+int PluginAudioProcessor::getNumPrograms()
 {
     return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
                 // so this should be at least 1, even if you're not really implementing programs.
 }
 
-int JuceAudioPluginTemplateAudioProcessor::getCurrentProgram()
+int PluginAudioProcessor::getCurrentProgram()
 {
     return 0;
 }
 
-void JuceAudioPluginTemplateAudioProcessor::setCurrentProgram (int index)
+void PluginAudioProcessor::setCurrentProgram (int index)
 {
 }
 
-const String JuceAudioPluginTemplateAudioProcessor::getProgramName (int index)
+const String PluginAudioProcessor::getProgramName (int index)
 {
     return String();
 }
 
-void JuceAudioPluginTemplateAudioProcessor::changeProgramName (int index, const String& newName)
+void PluginAudioProcessor::changeProgramName (int index, const String& newName)
 {
 }
 
 //==============================================================================
-void JuceAudioPluginTemplateAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void PluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
 }
 
-void JuceAudioPluginTemplateAudioProcessor::releaseResources()
+void PluginAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
-void JuceAudioPluginTemplateAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
+void PluginAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
     // In case we have more outputs than inputs, this code clears any output
     // channels that didn't contain input data, (because these aren't
@@ -163,25 +174,25 @@ void JuceAudioPluginTemplateAudioProcessor::processBlock (AudioSampleBuffer& buf
 }
 
 //==============================================================================
-bool JuceAudioPluginTemplateAudioProcessor::hasEditor() const
+bool PluginAudioProcessor::hasEditor() const
 {
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-AudioProcessorEditor* JuceAudioPluginTemplateAudioProcessor::createEditor()
+AudioProcessorEditor* PluginAudioProcessor::createEditor()
 {
-    return new JuceAudioPluginTemplateAudioProcessorEditor (*this);
+    return new PluginAudioProcessorEditor (*this);
 }
 
 //==============================================================================
-void JuceAudioPluginTemplateAudioProcessor::getStateInformation (MemoryBlock& destData)
+void PluginAudioProcessor::getStateInformation (MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
 }
 
-void JuceAudioPluginTemplateAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
+void PluginAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
@@ -191,5 +202,5 @@ void JuceAudioPluginTemplateAudioProcessor::setStateInformation (const void* dat
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new JuceAudioPluginTemplateAudioProcessor();
+    return new PluginAudioProcessor();
 }

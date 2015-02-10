@@ -769,7 +769,6 @@
 		C5152687364BC844168EA323 /* juce_FileTreeComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_FileTreeComponent.cpp; path = "../../../JUCE-OSX/modules/juce_gui_basics/filebrowser/juce_FileTreeComponent.cpp"; sourceTree = SOURCE_ROOT; };
 		C55EE835604C36D7EE333519 /* juce_BlowFish.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_BlowFish.cpp; path = "../../../JUCE-OSX/modules/juce_cryptography/encryption/juce_BlowFish.cpp"; sourceTree = SOURCE_ROOT; };
 		C594AD1F63B56A0AB9AD74A2 /* juce_Timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_Timer.cpp; path = "../../../JUCE-OSX/modules/juce_events/timers/juce_Timer.cpp"; sourceTree = SOURCE_ROOT; };
-		C5FD97731A82ACC400D059DB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C600AF8F6F353D02E9C23C67 /* juce_WindowsRegistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_WindowsRegistry.h; path = "../../../JUCE-OSX/modules/juce_core/misc/juce_WindowsRegistry.h"; sourceTree = SOURCE_ROOT; };
 		C64390FB912EA77CE4571C97 /* juce_RelativeRectangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_RelativeRectangle.h; path = "../../../JUCE-OSX/modules/juce_gui_basics/positioning/juce_RelativeRectangle.h"; sourceTree = SOURCE_ROOT; };
 		C6A6CBEF4CDF849FC442CFAF /* juce_FileChooserDialogBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_FileChooserDialogBox.cpp; path = "../../../JUCE-OSX/modules/juce_gui_basics/filebrowser/juce_FileChooserDialogBox.cpp"; sourceTree = SOURCE_ROOT; };
@@ -1313,7 +1312,6 @@
 		2A473930646885EB6F9A8742 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				C5FD97731A82ACC400D059DB /* README.md */,
 				AF4050621D50C8CF3FEC67F6 /* JuceAudioPluginTemplate */,
 				D10435A5D19564877327F88C /* Juce Modules */,
 				0DC20679BD8BB9BB8A74D607 /* Juce Library Code */,

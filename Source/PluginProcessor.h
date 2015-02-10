@@ -17,12 +17,12 @@
 //==============================================================================
 /**
 */
-class JuceAudioPluginTemplateAudioProcessor  : public AudioProcessor
+class PluginAudioProcessor  : public AudioProcessor
 {
 public:
     //==============================================================================
-    JuceAudioPluginTemplateAudioProcessor();
-    ~JuceAudioPluginTemplateAudioProcessor();
+    PluginAudioProcessor();
+    ~PluginAudioProcessor();
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -68,7 +68,7 @@ public:
 
 private:
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (JuceAudioPluginTemplateAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginAudioProcessor)
 };
 
 

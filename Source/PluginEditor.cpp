@@ -27,7 +27,7 @@
 //[/MiscUserDefs]
 
 //==============================================================================
-JuceAudioPluginTemplateAudioProcessorEditor::JuceAudioPluginTemplateAudioProcessorEditor (JuceAudioPluginTemplateAudioProcessor& p)
+PluginAudioProcessorEditor::PluginAudioProcessorEditor (PluginAudioProcessor& p)
     : AudioProcessorEditor (&p), processor (p)
 {
 
@@ -46,7 +46,7 @@ JuceAudioPluginTemplateAudioProcessorEditor::JuceAudioPluginTemplateAudioProcess
     //[/Constructor]
 }
 
-JuceAudioPluginTemplateAudioProcessorEditor::~JuceAudioPluginTemplateAudioProcessorEditor()
+PluginAudioProcessorEditor::~PluginAudioProcessorEditor()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
     //[/Destructor_pre]
@@ -59,18 +59,18 @@ JuceAudioPluginTemplateAudioProcessorEditor::~JuceAudioPluginTemplateAudioProces
 }
 
 //==============================================================================
-void JuceAudioPluginTemplateAudioProcessorEditor::paint (Graphics& g)
+void PluginAudioProcessorEditor::paint (Graphics& g)
 {
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
 
-    g.fillAll (Colours::white);
+    g.fillAll (Colour (0xff222222));
 
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
 }
 
-void JuceAudioPluginTemplateAudioProcessorEditor::resized()
+void PluginAudioProcessorEditor::resized()
 {
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
@@ -82,10 +82,10 @@ void JuceAudioPluginTemplateAudioProcessorEditor::resized()
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
-void JuceAudioPluginTemplateAudioProcessorEditor::timerCallback() {
+void PluginAudioProcessorEditor::timerCallback() {
     // Set UI values to match any changes made by host automation
     // Timer conflicts cause UI stuttering, this is due to the values not being mapped back
-    JuceAudioPluginTemplateAudioProcessor& ourProcessor = getProcessor();
+    PluginAudioProcessor& ourProcessor = getProcessor();
 
     // Example:
 //    gainSlider->setValue(
@@ -106,13 +106,12 @@ void JuceAudioPluginTemplateAudioProcessorEditor::timerCallback() {
 
 BEGIN_JUCER_METADATA
 
-<JUCER_COMPONENT documentType="Component" className="JuceAudioPluginTemplateAudioProcessorEditor"
+<JUCER_COMPONENT documentType="Component" className="PluginAudioProcessorEditor"
                  componentName="" parentClasses="public AudioProcessorEditor, public Timer"
-                 constructorParams="JuceAudioPluginTemplateAudioProcessor&amp; p"
-                 variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
+                 constructorParams="PluginAudioProcessor&amp; p" variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="0" initialWidth="600" initialHeight="400">
-  <BACKGROUND backgroundColour="ffffffff"/>
+  <BACKGROUND backgroundColour="ff222222"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
