@@ -15,6 +15,9 @@
 //==============================================================================
 PluginAudioProcessor::PluginAudioProcessor()
 {
+    // Initialize parameter ranges and values
+    // userParameters[param1].setRange(-20.f, 20.f);
+    // userParameters[param1].setWithUserValue(param1_default_value);
 }
 
 PluginAudioProcessor::~PluginAudioProcessor()
@@ -34,16 +37,18 @@ int PluginAudioProcessor::getNumParameters()
 
 float PluginAudioProcessor::getParameter (int index)
 {
-    switch (index) {
-        // case param1: return param1;
-        default:    return 0.0f;
-    }
+    return userParameters[index].getNormalizedParameter();
 }
 
 void PluginAudioProcessor::setParameter (int index, float newValue)
 {
+    userParameters[index].setWithNormalizedValue(newValue);
+    // Set additional values here,
+    // delete the switch statment if you don't need it.
     switch (index) {
-        // case param1: param1 = newValue; break;
+        // case param1: // "When param1 one is set to a new value, do this as well"
+        //     another_variable = 2 * newValue;
+        //     break;
         default:    break;
     }
 }
@@ -170,12 +175,27 @@ void PluginAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& 
 
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
+    
+    // Generally, effects will be stereo so this is a better approach,
+    // if you're trying to program for more channels try the default 
+    // code included below this for loop
+    float* leftChannel  = buffer.getWritePointer (0);
+    float* rightChannel = buffer.getWritePointer (1);
+    
+    for (int i = 0; i < buffer.getNumSample; i++)
+    {
+        float leftSample  = leftChannel[i];
+        float rightSample = rightChannel[i];
+    }
+
+    /* // Default JUCE multichannel processing loop
     for (int channel = 0; channel < getNumInputChannels(); ++channel)
     {
         float* channelData = buffer.getWritePointer (channel);
 
         // ..do something to the data...
     }
+    *//
 }
 
 //==============================================================================

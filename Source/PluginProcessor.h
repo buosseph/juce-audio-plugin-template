@@ -12,7 +12,16 @@
 #define PLUGINPROCESSOR_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "Parameter.h"
 
+/**
+ * Here are some helper functions to convert the input signal into decibels (dB).
+ * Input signals are represented as values from 0 to 1, which we'll call unit voltage
+ * here (uV). You can use dB(sampleValue) to convert the value to the dB range, and
+ * uV(decibleValue) to convert it back to the uV range for output.
+ */
+#define dB(x) 20.0 * ((x) > 0.00001 ? log10(x) : -5.0)  // uV -> dB
+#define uV(x) pow(10.0, (x) / 20.0)                     // dB -> uV
 
 //==============================================================================
 /**
@@ -40,7 +49,8 @@ public:
     int getNumParameters() override;
     float getParameter (int index) override;
     void setParameter (int index, float newValue) override;
-    float getParameterDefaultValue (int index) override; // Not included in default Juce template
+    float getParameterDefaultValue (int index) override;
+        // Not included in default Juce template
 
     const String getParameterName (int index) override;
     const String getParameterText (int index) override;
@@ -67,10 +77,16 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
     enum Parameters {
-        // Add params here,
+        // Add params here, (e.g. param1)
         totalNumParams
     }
+    
+    Parameter userParameters[totalNumParams];
+    
 private:
+    // Data structures, intermediate values, and processor-only methods should be delcared here
+    // (e.g. float fs; void setCutoff(float cutoff); MyFilter filter;)
+    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginAudioProcessor)
 };
