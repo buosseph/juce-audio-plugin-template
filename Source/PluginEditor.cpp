@@ -39,10 +39,8 @@ PluginAudioProcessorEditor::PluginAudioProcessorEditor (PluginAudioProcessor& p)
 
 
     //[Constructor] You can add your own custom stuff here..
-
-    // Uncomment to apply custom styling from PluginLookAndFeel
-//    LookAndFeel::setDefaultLookAndFeel(&pluginLookAndFeel);
-
+    startTimer (50);
+    // LookAndFeel::setDefaultLookAndFeel(&pluginLookAndFeel); // Uncomment to apply custom styling from PluginLookAndFeel
     //[/Constructor]
 }
 

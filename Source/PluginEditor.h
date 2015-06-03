@@ -66,7 +66,7 @@ private:
         return static_cast<PluginAudioProcessor&> (processor);
     }
 
-    PluginLookAndFeel pluginLookAndFeel;
+    // PluginLookAndFeel pluginLookAndFeel;  // Uncomment to apply custom styling from PluginLookAndFeel
 
     //[/UserVariables]
 

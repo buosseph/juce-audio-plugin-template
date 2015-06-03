@@ -29,12 +29,13 @@ const String PluginAudioProcessor::getName() const
 
 int PluginAudioProcessor::getNumParameters()
 {
-    return 0;
+    return totalNumParams;
 }
 
 float PluginAudioProcessor::getParameter (int index)
 {
     switch (index) {
+        // case param1: return param1;
         default:    return 0.0f;
     }
 }
@@ -42,6 +43,7 @@ float PluginAudioProcessor::getParameter (int index)
 void PluginAudioProcessor::setParameter (int index, float newValue)
 {
     switch (index) {
+        // case param1: param1 = newValue; break;
         default:    break;
     }
 }
@@ -49,6 +51,7 @@ void PluginAudioProcessor::setParameter (int index, float newValue)
 float PluginAudioProcessor::getParameterDefaultValue (int index)
 {
     switch (index) {
+        // case param1: return param1_default;
         default:    return 0.0f;
     }
 }
@@ -56,6 +59,7 @@ float PluginAudioProcessor::getParameterDefaultValue (int index)
 const String PluginAudioProcessor::getParameterName (int index)
 {
     switch (index) {
+        // case param1: return "Param1";
         default:    return String::empty;
     }
 }
@@ -63,6 +67,7 @@ const String PluginAudioProcessor::getParameterName (int index)
 const String PluginAudioProcessor::getParameterText (int index)
 {
     switch (index) {
+        // case param1:  return String(param1, 2) + "unit";
         default:    return String(getParameter(index), 2);
     }
 }
