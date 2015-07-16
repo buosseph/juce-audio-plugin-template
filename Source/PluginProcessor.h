@@ -78,8 +78,9 @@ public:
 
     enum Parameters {
         // Add params here, (e.g. param1)
+        param1,
         totalNumParams
-    }
+    };
     
     Parameter userParameters[totalNumParams];
     

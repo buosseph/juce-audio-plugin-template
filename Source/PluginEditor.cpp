@@ -30,9 +30,18 @@
 PluginAudioProcessorEditor::PluginAudioProcessorEditor (PluginAudioProcessor& p)
     : AudioProcessorEditor (&p), processor (p)
 {
+    addAndMakeVisible (slider = new Slider ("new slider"));
+    slider->setRange (-20, 20, 0);
+    slider->setSliderStyle (Slider::LinearVertical);
+    slider->setTextBoxStyle (Slider::TextBoxLeft, false, 80, 20);
+    slider->addListener (this);
+
 
     //[UserPreSize]
     // Add any other settings not offered by GUI editor here, else they'll be deleted
+    slider
+        ->setDoubleClickReturnValue(true,
+                                    processor.userParameters[processor.param1].default_value());
     //[/UserPreSize]
 
     setSize (600, 400);
@@ -49,6 +58,7 @@ PluginAudioProcessorEditor::~PluginAudioProcessorEditor()
     //[Destructor_pre]. You can add your own custom destruction code here..
     //[/Destructor_pre]
 
+    slider = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -73,8 +83,26 @@ void PluginAudioProcessorEditor::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
+    slider->setBounds (32, 48, 119, 208);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
+}
+
+void PluginAudioProcessorEditor::sliderValueChanged (Slider* sliderThatWasMoved)
+{
+    //[UsersliderValueChanged_Pre]
+    //[/UsersliderValueChanged_Pre]
+
+    if (sliderThatWasMoved == slider)
+    {
+        //[UserSliderCode_slider] -- add your slider handling code here..
+        float normalizedValue = processor.userParameters[processor.param1].SetParameter(sliderThatWasMoved->getValue());
+        processor.setParameterNotifyingHost(processor.param1, normalizedValue);
+        //[/UserSliderCode_slider]
+    }
+
+    //[UsersliderValueChanged_Post]
+    //[/UsersliderValueChanged_Post]
 }
 
 
@@ -83,13 +111,16 @@ void PluginAudioProcessorEditor::resized()
 void PluginAudioProcessorEditor::timerCallback() {
     // Set UI values to match any changes made by host automation
     // Timer conflicts cause UI stuttering, this is due to the values not being mapped back
-    PluginAudioProcessor& ourProcessor = getProcessor();
 
     // Example:
 //    gainSlider->setValue(
 //        (106.f * ourProcessor.uGain - 96.f),
 //        dontSendNotification
 //    );
+    slider->setValue(
+        processor.userParameters[processor.param1].parameter(),
+        dontSendNotification
+    );
 
 }
 //[/MiscUserCode]
@@ -110,6 +141,10 @@ BEGIN_JUCER_METADATA
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ff222222"/>
+  <SLIDER name="new slider" id="51a6f7c376d8da5f" memberName="slider" virtualName=""
+          explicitFocusOrder="0" pos="32 48 119 208" min="-20" max="20"
+          int="0" style="LinearVertical" textBoxPos="TextBoxLeft" textBoxEditable="1"
+          textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

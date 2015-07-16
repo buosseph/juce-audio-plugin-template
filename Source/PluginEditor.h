@@ -37,7 +37,8 @@
                                                                     //[/Comments]
 */
 class PluginAudioProcessorEditor  : public AudioProcessorEditor,
-                                    public Timer
+                                    public Timer,
+                                    public SliderListener
 {
 public:
     //==============================================================================
@@ -51,6 +52,7 @@ public:
 
     void paint (Graphics& g);
     void resized();
+    void sliderValueChanged (Slider* sliderThatWasMoved);
 
 
 
@@ -71,6 +73,7 @@ private:
     //[/UserVariables]
 
     //==============================================================================
+    ScopedPointer<Slider> slider;
 
 
     //==============================================================================

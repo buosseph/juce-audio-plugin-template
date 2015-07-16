@@ -11,13 +11,17 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-
 //==============================================================================
 PluginAudioProcessor::PluginAudioProcessor()
 {
     // Initialize parameter ranges and values
-    // userParameters[param1].setRange(-20.f, 20.f);
-    // userParameters[param1].setWithUserValue(param1_default_value);
+    userParameters[param1] = Parameter("Param1", "%", -20.f, 20.f, 0.f);
+    //userParameters[param1].SetRange(-20.f, 20.f);
+//    userParameters[param1].setDefaultValue(0.f);
+//    userParameters[param1].setName("Param1");
+//    userParameters[param1].setUnit("%");
+//    userParameters[param1].setAll(-20.f, 20.f, 0.5f, false, "Param1", "%");
+//    userParameters[param2] = Parameter(-2.f, 5.f, 0.f, false, "Param2", "dB");
 }
 
 PluginAudioProcessor::~PluginAudioProcessor()
@@ -37,12 +41,12 @@ int PluginAudioProcessor::getNumParameters()
 
 float PluginAudioProcessor::getParameter (int index)
 {
-    return userParameters[index].getNormalizedParameter();
+    return userParameters[index].normalized();
 }
 
 void PluginAudioProcessor::setParameter (int index, float newValue)
 {
-    userParameters[index].setWithNormalizedValue(newValue);
+    userParameters[index].SetNormalized(newValue);
     // Set additional values here,
     // delete the switch statment if you don't need it.
     switch (index) {
@@ -55,26 +59,17 @@ void PluginAudioProcessor::setParameter (int index, float newValue)
 
 float PluginAudioProcessor::getParameterDefaultValue (int index)
 {
-    switch (index) {
-        // case param1: return param1_default;
-        default:    return 0.0f;
-    }
+    return userParameters[index].normalized_default();
 }
 
 const String PluginAudioProcessor::getParameterName (int index)
 {
-    switch (index) {
-        // case param1: return "Param1";
-        default:    return String::empty;
-    }
+    return userParameters[index].name();
 }
 
 const String PluginAudioProcessor::getParameterText (int index)
 {
-    switch (index) {
-        // case param1:  return String(param1, 2) + "unit";
-        default:    return String(getParameter(index), 2);
-    }
+    return String(userParameters[index].parameter()) + userParameters[index].unit();
 }
 
 const String PluginAudioProcessor::getInputChannelName (int channelIndex) const
@@ -182,7 +177,7 @@ void PluginAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& 
     float* leftChannel  = buffer.getWritePointer (0);
     float* rightChannel = buffer.getWritePointer (1);
     
-    for (int i = 0; i < buffer.getNumSample; i++)
+    for (int i = 0; i < buffer.getNumSamples(); i++)
     {
         float leftSample  = leftChannel[i];
         float rightSample = rightChannel[i];
@@ -195,7 +190,7 @@ void PluginAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& 
 
         // ..do something to the data...
     }
-    *//
+    */
 }
 
 //==============================================================================
