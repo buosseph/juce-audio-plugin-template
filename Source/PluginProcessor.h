@@ -2,7 +2,7 @@
 #define PLUGINPROCESSOR_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "Parameter.h"
+#include "PluginParameter.h"
 
 /** Helper Macros
     
@@ -41,18 +41,8 @@ public:
 
     //==============================================================================
     const String getName() const override;
-
-    int   getNumParameters() override;
-    float getParameter (int index) override;
-    void  setParameter (int index, float newValue) override;
-    float getParameterDefaultValue (int index) override;
-
-    const String getParameterName (int index) override;
-    const String getParameterText (int index) override;
-
     const String getInputChannelName (int channelIndex) const override;
     const String getOutputChannelName (int channelIndex) const override;
-
     bool isInputChannelStereoPair (int index) const override;
     bool isOutputChannelStereoPair (int index) const override;
 
@@ -72,32 +62,12 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    /** Parameters
-
-        All parameters must be represented by some id.
-
-        This enum holds the id values for every parameter available to
-        the user of your plugin. The id's start from 0. The last 
-        When you want to add a new user parameter to your plugin, you must
-        insert the new id before `totalNumParams`.
-
-        The order of parameters does not matter so long as `totalNumParams`
-        remains as the last item in the enum. If you have written code using
-        a parameter id and decide to rearrange items within this enum, you
-        must rewrite the code
-    */
-    enum Parameters {
-        // userParam1,
-        totalNumParams
-    };
-    
-    // All user parameter ids are available form this array.
-    Parameter userParameters[totalNumParams];
+    // Parameters
+    // AudioProcessorParameter* myParam;
     
 private:
     // Data structures, intermediate values, and processor-only methods should
     // be delcared here. E.g. `float fs; void setCutoff(float cutoff);
-    // MyFilter filter;`
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginAudioProcessor)

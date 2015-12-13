@@ -4,8 +4,11 @@
 //==============================================================================
 PluginAudioProcessor::PluginAudioProcessor()
 {
-    // Initialize parameter ranges and values
-    // userParameters[userParam1] = Parameter(...);
+    // If you're using PluginParameter, create lambda callbacks
+    // auto myCallback = [this] (float value) { ... };
+    
+    // Create and add parameters
+    // addParameter(myParameter = new ...);
 }
 
 PluginAudioProcessor::~PluginAudioProcessor()
@@ -16,48 +19,6 @@ PluginAudioProcessor::~PluginAudioProcessor()
 const String PluginAudioProcessor::getName() const
 {
     return JucePlugin_Name;
-}
-
-int PluginAudioProcessor::getNumParameters()
-{
-    return totalNumParams;
-}
-
-// Return value must be in range of 0.0 - 1.0
-float PluginAudioProcessor::getParameter (int index)
-{
-    return userParameters[index].normalized();
-}
-
-// Input value must be within range of 0.0 - 1.0
-void PluginAudioProcessor::setParameter (int index, float newValue)
-{
-    userParameters[index].SetNormalized(newValue);
-    // Set additional values here, delete the switch statment if you don't
-    // need it.
-    switch (index) {
-        // "When param1 one is set to a new value, do this as well"
-        // case userParam1:
-        //     another_variable = 2 * newValue;
-        //     break;
-        default:    break;
-    }
-}
-
-// Return value must be in range of 0.0 - 1.0
-float PluginAudioProcessor::getParameterDefaultValue (int index)
-{
-    return userParameters[index].normalized_default();
-}
-
-const String PluginAudioProcessor::getParameterName (int index)
-{
-    return userParameters[index].name();
-}
-
-const String PluginAudioProcessor::getParameterText (int index)
-{
-    return String(userParameters[index].parameter()) + userParameters[index].unit();
 }
 
 const String PluginAudioProcessor::getInputChannelName (int channelIndex) const
@@ -159,7 +120,7 @@ void PluginAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& 
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
     
-    // Generally, effects will be stereo so this is a better approach,
+    // Generally, effects will be stereo only so this is a better approach,
     // if you're trying to program for more channels try the default 
     // code included below this for loop
     float* leftChannel  = buffer.getWritePointer (0);
@@ -185,13 +146,12 @@ void PluginAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& 
 //==============================================================================
 bool PluginAudioProcessor::hasEditor() const
 {
-    // Return false if you choose to not supply an editor
-    return true;
+    return true; // (change this to false if you choose to not supply an editor)
 }
 
 AudioProcessorEditor* PluginAudioProcessor::createEditor()
 {
-    return new PluginAudioProcessorEditor(*this);
+    return new PluginEditor(*this);
 }
 
 //==============================================================================

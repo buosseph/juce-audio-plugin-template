@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Introjucer version: 3.2.0
+  Created with Introjucer version: 4.0.2
 
   ------------------------------------------------------------------------------
 
@@ -27,7 +27,7 @@
 //[/MiscUserDefs]
 
 //==============================================================================
-PluginAudioProcessorEditor::PluginAudioProcessorEditor (PluginAudioProcessor& p)
+PluginEditor::PluginEditor (PluginAudioProcessor& p)
     : AudioProcessorEditor (&p), processor (p)
 {
     //[Constructor_pre] You can add your own custom stuff here..
@@ -41,13 +41,11 @@ PluginAudioProcessorEditor::PluginAudioProcessorEditor (PluginAudioProcessor& p)
 
 
     //[Constructor] You can add your own custom stuff here..
-    startTimer(50);
-    // Uncomment to apply custom styling from PluginLookAndFeel.
-    // LookAndFeel::setDefaultLookAndFeel(&pluginLookAndFeel);
+    startTimer (30);
     //[/Constructor]
 }
 
-PluginAudioProcessorEditor::~PluginAudioProcessorEditor()
+PluginEditor::~PluginEditor()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
     //[/Destructor_pre]
@@ -59,7 +57,7 @@ PluginAudioProcessorEditor::~PluginAudioProcessorEditor()
 }
 
 //==============================================================================
-void PluginAudioProcessorEditor::paint (Graphics& g)
+void PluginEditor::paint (Graphics& g)
 {
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
@@ -70,7 +68,7 @@ void PluginAudioProcessorEditor::paint (Graphics& g)
     //[/UserPaint]
 }
 
-void PluginAudioProcessorEditor::resized()
+void PluginEditor::resized()
 {
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
@@ -83,19 +81,14 @@ void PluginAudioProcessorEditor::resized()
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
-/** Updates GUI elements to match host values.
+/**
+    Updates GUI elements to match host values in an AudioProcessorParameter.
+
     Timer conflicts cause stuttering when using elements, this is due to
     the values not being mapped correctly.
 */
-void PluginAudioProcessorEditor::timerCallback() {
-    /* Example:
-    float parameterValue = 0.5f;
-    slider->setValue(parameterValue, dontSendNotification);
-
-    // Or if you're using Parameter.h
-    slider->setValue(processor.params[processor.param_id].parameter(),
-                     dontSendNotification);
-    */
+void PluginEditor::timerCallback() {
+    // E.g. mySlider->setValue(processor.myParam->getActualValue(), dontSendNotification);
 }
 
 //[/MiscUserCode]
@@ -110,9 +103,9 @@ void PluginAudioProcessorEditor::timerCallback() {
 
 BEGIN_JUCER_METADATA
 
-<JUCER_COMPONENT documentType="Component" className="PluginAudioProcessorEditor"
-                 componentName="" parentClasses="public AudioProcessorEditor, public Timer"
-                 constructorParams="PluginAudioProcessor&amp; p" variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
+<JUCER_COMPONENT documentType="Component" className="PluginEditor" componentName=""
+                 parentClasses="public AudioProcessorEditor, public Timer" constructorParams="PluginAudioProcessor&amp; p"
+                 variableInitialisers="AudioProcessorEditor (&amp;p), processor (p)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ff272727"/>

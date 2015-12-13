@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Introjucer version: 3.2.0
+  Created with Introjucer version: 4.0.2
 
   ------------------------------------------------------------------------------
 
@@ -17,15 +17,12 @@
   ==============================================================================
 */
 
-// This guard will be renamed when you use the GUI editor
-#ifndef PLUGINEDITOR_H_INCLUDED
-#define PLUGINEDITOR_H_INCLUDED
+#ifndef __JUCE_HEADER_F1B68972952BE4__
+#define __JUCE_HEADER_F1B68972952BE4__
 
 //[Headers]     -- You can add your own extra header files here --
 #include "JuceHeader.h"
 #include "PluginProcessor.h"
-// Uncomment to apply custom styling from PluginLookAndFeel
-// #include "PluginLookAndFeel.h"
 //[/Headers]
 
 
@@ -33,18 +30,18 @@
 //==============================================================================
 /**
                                                                     //[Comments]
-    An auto-generated component, created by the Introjucer.
+    Your plugin GUI editor.
 
     Describe your class and how it works here!
                                                                     //[/Comments]
 */
-class PluginAudioProcessorEditor  : public AudioProcessorEditor,
-                                    public Timer
+class PluginEditor  : public AudioProcessorEditor,
+                      public Timer
 {
 public:
     //==============================================================================
-    PluginAudioProcessorEditor (PluginAudioProcessor& p);
-    ~PluginAudioProcessorEditor();
+    PluginEditor (PluginAudioProcessor& p);
+    ~PluginEditor();
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
@@ -63,19 +60,16 @@ private:
     // processor object that created it.
     PluginAudioProcessor& processor;
 
-    // Uncomment to apply custom styling from PluginLookAndFeel
-    // PluginLookAndFeel pluginLookAndFeel;
-
     //[/UserVariables]
 
     //==============================================================================
 
 
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginEditor)
 };
 
 //[EndFile] You can add extra defines here...
 //[/EndFile]
 
-#endif   // PLUGINEDITOR_H_INCLUDED
+#endif   // __JUCE_HEADER_F1B68972952BE4__
